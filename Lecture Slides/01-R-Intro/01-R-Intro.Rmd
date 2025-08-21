@@ -1,6 +1,6 @@
 ---
 title: "Lecture 1: Introduction to R"
-author: "James Sears* <br> AFRE 891/991 SS 25 <br> Michigan State University"
+author: "James Sears* <br> AFRE 891/991 FS 25 <br> Michigan State University"
       
 output:
   xaringan::moon_reader:
@@ -85,11 +85,12 @@ As you'll soon see, I frequently use .hi-medgrn[color to emphasize text].
 One distinction: .hi-orange.under[Links]
   * .hi-orange.under[Underlined orange] is reserved for .hi-orange.under[links]
   * Whenever you see .hi-orange.under[underlined orange text] on other slides, click it to go to the referenced content
-
+  * Note: this slide is just as an example. Don't [click the links](https://vimeo.com/1054785337) just yet
+  
 ---
 # Using the Slides
 
-I highly recommend that you [replicate code in the slides as I go](https://github.com/afre-msu/AFRE-891-991-SS25/tree/033f59f18cee67d3363cc98229dfb86a649eb838/Lecture%20Slides/01-R-Intro).super[.pink[†]].
+I highly recommend that you [replicate code in the slides as I go](https://github.com/afre-msu/AFRE-891-991-FS25/tree/53507296ea26ab685269b6576ecc3f08b11e8515/Lecture%20Slides/01-R-Intro).super[.pink[†]].
   * Try to type the code yourself first, use the code written in slides if you fall behind
   * Good habit to create a .hi-blue[reference script] with all the new methods/functions as you go
 
@@ -141,7 +142,7 @@ A quick roundtable of
 class: inverse, middle
 # Syllabus Highlights
 
-(Read the whole thing here: [891](https://github.com/afre-msu/AFRE-891-991-SS25/blob/98c476e6dcc6128e282332c5208152fcfaa46d90/Course%20Logistics/AFRE%20891/Syllabus%20-%20AFRE%20891%20SS25.pdf), [991](https://github.com/afre-msu/AFRE-891-991-SS25/blob/98c476e6dcc6128e282332c5208152fcfaa46d90/Course%20Logistics/AFRE%20991/Syllabus%20-%20AFRE%20991%20SS25.pdf))
+(Read the whole thing here: [891](https://github.com/afre-msu/AFRE-891-991-SS25/blob/91f13e8e8218265ea48e16b1f8f7a3437fb5979b/Course%20Logistics/AFRE%20891/Syllabus%20-%20AFRE%20891%20SS25.pdf), [991](https://github.com/afre-msu/AFRE-891-991-SS25/blob/91f13e8e8218265ea48e16b1f8f7a3437fb5979b/Course%20Logistics/AFRE%20991/Syllabus%20-%20AFRE%20991%20SS25.pdf))
 
 ---
 # Why This Course(s)?
@@ -287,7 +288,7 @@ Grading:
 # Course Schedule (II)
 
 .pull-left[
-### Data Acquisition (Weeks 7, 9A).super[.pink[†]]
+### Data Acquisition (Weeks 7-8)
   * Finding and Acquiring Data
   * Considerations for Administrative or PII Data
   * Scraping Static Webpages
@@ -296,7 +297,7 @@ Grading:
 ]
 
 .pull-right[
-### Programming (Weeks 9B-10)
+### Programming (Weeks 9-10)
   * Conditional Logic
   * Function writing
   * Indirection and Name Injection
@@ -304,9 +305,7 @@ Grading:
   * Parallelization 
 ]
 
-.footnote[
-.pink[†] Week 8 is Spring Break!
-]
+
 
 ---
 # Course Schedule (III)
@@ -532,7 +531,7 @@ To install .hi-blue[RStudio], go to the [RStudio Download Page](https://posit.co
 * Create an account on [GitHub](https://github.com/) and register for a [student/educator  discount](https://education.github.com/discount_requests/new)
     * You will soon receive an invitation to the course repo on GitHub, as well as [GitHub classroom](https://classroom.github.com), which is how we'll disseminate and submit assignments, receive feedback and grading, etc. 
 - **Windows:** Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
-- **Mac:** Configure/open your C++ toolchain (see [here](https://github.com/rmacoslib/r-macos-rtools#installer-package-for-macos-r-toolchain-)
+- **Mac:** Configure/open your C++ toolchain (see [here](https://github.com/rmacoslib/r-macos-rtools#installer-package-for-macos-r-toolchain-))
 
 ---
 # RStudio
@@ -1181,6 +1180,8 @@ ex_list <- list(
 ex_list$vec
 ```
 
+Lists are handy for grouping together a number of objects of different types.
+
 ---
 # Checking Object Types 
 
@@ -1502,6 +1503,13 @@ if (Sys.info()["nodename"] == "DESKTOP-SHT9660" ){
 setwd(onedir)
 ```
 .footnote[Run `Sys.info()` to see information about your system, including its name (`nodename` element)]
+
+---
+# Preamble Example: Paths
+
+Note that if you organize your shared folders (whether on GitHub or an alternate cloud storage system) properly - i.e. your script/R Markdown file in the main project folder - you don't need to manually set paths!
+
+
 ---
 # Cleaning Up
 
