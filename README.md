@@ -28,7 +28,7 @@ This work is licensed under a
 
  ## Lecture Slides
 
-** Note:** in order to view the HTML slides, you must first download them (GitHub will not show a preview).
+**Note:** in order to view the HTML slides, you must first download them (GitHub will not show a preview).
 
  [**Lecture 0: Getting Started**](https://github.com/afre-msu/AFRE-891-991-FS25/tree/aeca7b22b06c74eda3df3b4b65b352fa48c1267b/Lecture%20Slides/00-Getting-Started)
  ([html](https://github.com/afre-msu/AFRE-891-991-FS25/blob/aeca7b22b06c74eda3df3b4b65b352fa48c1267b/Lecture%20Slides/00-Getting-Started/00-Getting-Started.html)) ([pdf](https://github.com/afre-msu/AFRE-891-991-FS25/blob/aeca7b22b06c74eda3df3b4b65b352fa48c1267b/Lecture%20Slides/00-Getting-Started/00-Getting-Started.pdf))
