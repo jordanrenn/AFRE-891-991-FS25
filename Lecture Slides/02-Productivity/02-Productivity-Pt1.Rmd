@@ -1,0 +1,816 @@
+---
+title: "Lecture 2: R Markdown, Version Control with Git(Hub), and Other Productivity Tools - Part 1"
+author: "James Sears* <br> AFRE 891/991 FS 25 <br> Michigan State University"
+date: ".small[<br> *Parts of these slides are adapted from [“Advanced Data Analytics”](https://github.com/msu-econ-data-analytics/course-materials) by Nick Hagerty and [“Data Science for Economists”](https://github.com/uo-ec607/lectures) by Grant McDermott.]"
+
+      
+output:
+  xaringan::moon_reader:
+    css: [msu-default.css, msu-metropolis.css, metropolis-fonts]
+    lib_dir: libs
+    self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+      fig_caption: true
+
+header-includes:
+  -\usepackage{amsmath}
+---
+
+```{css, echo=FALSE}
+# CSS for including pauses in printed PDF output (see bottom of lecture)
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+.remark-code-line {
+  font-size: 95%;
+}
+.small {
+  font-size: 75%;
+}
+.scroll-output-full {
+  height: 90%;
+  overflow-y: scroll;
+}
+.scroll-output-75 {
+  height: 75%;
+  overflow-y: scroll;
+}
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+library(fontawesome)
+knitr::opts_chunk$set(
+	fig.align = "center",
+	cache = FALSE,
+	dpi = 300,
+  warning = F,
+  message = F,
+	fig.height = 5,
+	out.width = "80%"
+)
+```
+# Table of Contents
+
+1. [Prologue](#prologue)
+
+1. [R Markdown](#markdown)
+
+1. [Version Control](#control)
+
+1. [GitHub Desktop - Part 1](#desktop)
+
+
+
+---
+class: inverse, middle
+name: prologue
+
+# Prologue
+
+<!-- software installations, checking registrations-->
+
+---
+# Prologue
+
+Before we dive in, let's double check that we all have
+
+`r fa('square-check')` Installed [.hi-orange[R]](https://www.r-project.org/).
+
+`r fa('square-check')` Installed [.hi-orange[RStudio]](https://www.rstudio.com/products/rstudio/download/preview/).
+	
+`r fa('square-check')`  Signed up for an account on [.hi-orange[Github]](https://github.com/)
+
+`r fa('square-check')` Installed [.hi-orange[Git]](https://happygitwithr.com/install-git) and [.hi-orange[Github Desktop]](https://desktop.github.com/)
+
+`r fa('square-check')`  Log into your Github account on Github Desktop
+
+---
+class: inverse, middle
+name: markdown
+
+# R Markdown
+
+---
+#R Markdown
+
+Before we dive into version control, let's chat about .hi-medgrn[R Markdown].
+
+--
+
+R Markdown is a document type that allows for integration of R code and output into a Markdown document. 
+
+.hi-blue[Resources:]
+- Website: [.hi-orange[rmarkdown.rstudio.com]](https://rmarkdown.rstudio.com)
+- [.hi-orange[R Markdown Cheatsheet]](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf)
+- Book: [.hi-orange[R Markdown: The Definitive Guide]](https://bookdown.org/yihui/rmarkdown) (Yihui Xie, JJ Allaire, and Garrett Grolemund)
+
+---
+#R Markdown
+
+Before we dive into version control, let's chat about .hi-medgrn[R Markdown].
+
+
+R Markdown is a document type that allows for integration of R code and output into a Markdown document. 
+
+.hi-pink[Other points:]
+- We'll be completing assignments using R Markdown.
+- FWIW, my lecture slides and notes are all written in R Markdown too. (E.g. This slide deck is built using the [.hi-orange[xaringan]](https://github.com/yihui/xaringan/wiki) package with the metropolis theme.)
+
+
+---
+# R Markdown: Getting Started
+
+`r fa('square-check')` Installed [R](https://www.r-project.org/).
+
+`r fa('square-check')` Installed [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
+
+--
+
+`r fa('square')`  Add the `rmarkdown` package
+
+
+```{r, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+--
+
+`r fa('square')` Install LaTeX
+  * If just for this, can use [.hi-orange[TinyTex]](https://yihui.name/tinytex/)
+
+```{r, eval = FALSE}
+# Install only if you don't have LaTeX already
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+---
+# R Markdown: Creating a New .Rmd File
+
+<img src="images/rmd_add.png" width = "100%"/> 
+
+---
+# R Markdown: Creating a New .Rmd File
+
+<img src="images/rmd_add2.png" width = "100%"/> 
+
+---
+# R Markdown: Creating a New .Rmd File
+
+<img src="images/rmd_add3.png" width = "120%"/> 
+
+
+---
+# R Markdown Components
+
+R Markdown combines
+  1. .hi-purple[Markdown:] lightweight markup language
+  1. .hi-pink[LaTeX:] typesetting for math
+  1. .hi-medgrn[R:] include code and generate output
+  
+--
+
+<br>
+<br> 
+Let's do some practice: .hi-slate[open a new .Rmd file] and try adding content as we go
+
+---
+# Markdown
+
+.hi-purple[Markdown] allows for formatting text in a lightweight way
+
+I highly recommend the handy [.hi-orange[Markdown Guide]](https://www.markdownguide.org/) for more details
+
+---
+# Markdown: Heading
+
+.hi-blue[Headings] emphasize text and add chunks to your script
+
+Largest headingwith one leading \#  (slide title above) 
+
+## Second Largest (\#\#)
+### Third Largest (\#\#\#)
+#### Getting Smaller... (\#\#\#\#)
+Normal Text for comparison
+
+
+---
+# Markdown: Text Format
+
+**Bold text** with \*\*your text\*\*
+
+*Italicize* with \*single asterisks\*
+
+Add `code text` with  grave accents (the back tick symbol)
+  * &#96;
+  * The other output of the tilde key `~` on keyboard
+
+End a line with two spaces  to start a new paragraph 
+  * or leave a line space between sentences
+
+Can also start a new line with backslash (\\)
+
+
+
+---
+# Markdown: Text Format
+
+Add superscripts<sup>2</sup> with ^carets^
+
+Add ~~strikethroughs~~ with \~\~double tildes\~\~
+
+Add a line break (horizontal rule) 
+
+***
+
+with \*\*\*
+
+---
+# Markdown: Text Format
+
+Draw .hi-pink[tables] using | and -
+
+.center[
+```
+| Col A | Col B | Col C|
+|-------|-------|------|
+| This  | is    | a    |
+| Table |       | wow  |
+```
+]
+---
+# Markdown: Text Format
+
+Draw .hi-pink[tables] using | and -
+
+
+| Col A | Col B | Col C|
+|-------|-------|------|
+| This  | is    | a    |
+| Table |       | wow  |
+
+
+
+---
+# Markdown: Text Format
+
+You can adjust the .hi-medgrn[alignment] of table text by adding `:`'s in the second row:
+  - `:----` for left-aligned
+  - `:---:` for center-aligned
+  - `----:` for left-aligned
+
+.center[
+```
+| Column A | Column B | Column C|
+|:---   |:---:|            ---:|
+| Col A | is  | left-aligned   |
+| Col B | is  | center-aligned |
+| Col C | is  | right-aligned  |
+```
+]
+---
+# Markdown: Text Format
+
+You can adjust the .hi-medgrn[alignment] of table text by adding `:`'s in the second row:
+  - `:----` for left-aligned
+  - `:---:` for center-aligned
+  - `----:` for left-aligned
+
+| Column A | Column B | Column C|
+|:---   |:---:|            ---:|
+| Col A | is  | left-aligned   |
+| Col B | is  | center-aligned |
+| Col C | is  | right-aligned  |
+
+---
+# Markdown: Lists
+
+Add an .hi-purple[ordered list] with .hi-purple[1.]
+
+  1. First Item
+  1. Second Item
+  1. No need to change the number - keep using 1. It will automatically update.
+  
+--
+
+Add an .hi-medgrn[unordered list] with .hi-medgrn[\* or \-]
+
+  * A thing
+  * Another related thing
+    - Indent to nest
+      1. Can mix ordered and unordered
+
+---
+# Markdown: Inputs
+
+Add a [link](https://www.markdownguide.org/cheat-sheet/) with \[\]()
+  * \[text label\](URL)
+  * Add direct link with &#60;link&#62;   <https://www.markdownguide.org>
+  
+--
+
+Add an image with !\[\]()
+  * !\[alt text](URL)
+
+
+.hi-medgrn[practice] by adding `images/smile.png`:
+  
+  ![test with one of our images](images/smile.png)
+  
+---
+# Markdown: LaTeX
+
+Another advantage of Markdown is that it integrates ![latex](images/latex.png) functionality for typesetting math.
+
+
+
+--
+
+Add an .hi-purple[inline equation] with &#36;TeX&#36;
+
+$Var(X) = \sum\limits_{i=1}^n \frac{(x_i - \bar{x})^2}{n} ~~~~ ~~~ Y_{it} = \beta_0 + \beta_1 X_{it} + \epsilon_{it}$
+
+--
+
+Add multiple rows of LaTeX with 
+
+&#36;&#36; 
+
+LaTeX lines here
+
+&#36;&#36;
+
+Use the [.hi-orange[standard LaTeX commands]](https://kapeli.com/cheat_sheets/LaTeX_Math_Symbols.docset/Contents/Resources/Documents/index) for symbols/characters
+
+
+---
+# Rmd: R Code
+
+R code is primarily executed with .hi-blue[code chunks]
+
+--
+
+Add a chunk with 
+  * `Cmd + Option + I (Ctrl + Alt + I on PC)`
+  * The `Insert` button in the UI
+  * Manually type 
+
+![Insert button location](images/insert.png)
+---
+# Rmd: Code Chunks
+
+
+<img src="images/chunk.png" width = "120%"/> 
+
+
+
+.hi-blue[Code chunks] allow us to add as many lines of code as we want
+  * Output will appear underneath after executing the full chunk
+  * Can customize whether it runs, how output is displayed
+  * Can run manually 
+    * Line by line with `Cmd/Ctrl + Enter`
+    * Entire chunk with `Run Entire Chunk` button
+
+---
+# Code Chunk Options
+
+You can .hi-blue[add chunk options] in brackets after `r` and separated by commas.
+
+Some commonly-used options include:
+  * .hi-slate[Chunk label] (`ex_chunk`)
+  * `include = FALSE` will run the chunk but hide it from the final document
+  * `eval = FALSE` will display code without evaluating it
+  * `results = 'hide'` runs code but hides output from the final document 
+  
+<img src="images/chunk_opts.png" width = "80%"/> 
+
+    
+---
+# Code Chunk Options
+
+You can also .hi-blue[change the color] of code chunks and/or output in the rendered document through code chunk options<sup>1</sup>
+  * `class.source` to change the .hi-medgrn[code chunk]
+  * `output.source` to change the .hi-red[output]
+
+--
+
+
+.pull-left[
+.hi-slate[default] 
+
+<img src="images/class_def.png" width = "80%"/> 
+]
+
+.pull-right[
+.hi-slate[`bg-primary`] 
+
+<img src="images/class_primary.png" width = "80%"/> 
+]
+
+.footnote[<sup>1</sup> We'll chat more about this when we get to web scraping, but what's actually happening here is that we're harnessing some built-in CSS classes to change the backgrounds. This also means that, using CSS, you can define custom classes and format things however you'd like.]
+
+
+---
+# Code Chunk Options
+
+You can also .hi-blue[change the color] of code chunks and/or output in the rendered document through code chunk options<sup>1</sup>
+  * `class.source` to change the .hi-medgrn[code chunk]
+  * `output.source` to change the .hi-red[output]
+
+
+
+.pull-left[
+.hi-slate[`bg-success`] 
+
+<img src="images/class_success.png" width = "80%"/> 
+]
+
+
+.pull-right[
+.hi-slate[`bg-info`] 
+
+<img src="images/class_info.png" width = "80%"/> 
+]
+
+.footnote[<sup>1</sup> We'll chat more about this when we get to web scraping, but what's actually happening here is that we're harnessing some built-in CSS classes to change the backgrounds. This also means that, using CSS, you can define custom classes and format things however you'd like.]
+
+ 
+---
+# Code Chunk Options
+
+You can also .hi-blue[change the color] of code chunks and/or output in the rendered document through code chunk options<sup>1</sup>
+  * `class.source` to change the .hi-medgrn[code chunk]
+  * `output.source` to change the .hi-red[output]
+  
+.pull-left[
+.hi-slate[`bg-warning`]
+
+<img src="images/class_warning.png" width = "80%"/> 
+
+]
+
+
+
+.pull-right[
+.hi-slate[`bg-danger`]
+
+<img src="images/class_danger.png" width = "80%"/> 
+
+]
+
+.footnote[<sup>1</sup> We'll chat more about this when we get to web scraping, but what's actually happening here is that we're harnessing some built-in CSS classes to change the backgrounds. This also means that, using CSS, you can define custom classes and format things however you'd like.]
+
+
+---
+# Rmd: Inline Code
+
+You can call R objects from earlier chunks .hi-medgrn[inline] with 
+
+![backtick](images/backtick.png) r  ![backtick](images/backtick.png)
+
+
+
+```{r}
+four = 2+2
+```
+
+This can output in line with text: 2 + 2 = `r four`
+
+
+---
+class: inverse, middle
+
+
+# R Markdown File Organization
+
+
+---
+# 1. Header
+.pull-left[
+RStudio automatically builds the R Markdown file from a template, which begins with a .hi-medgrn[header]
+  * Title
+  * Author
+  * Date
+  * Output Format
+    * Main options<sup>1</sup>: HTML (`html_document`), PDF (`pdf_document`), LaTeX (`latex_document`), or Word (`word_document`)<sup>2</sup>
+]
+.pull-right[
+
+<img src="images/header.png" width = "120%"/> 
+
+.font80[1: See [.hi-orange[CH 3 of "R Markdown: The Definitive Guide" for more on how to customize output formats]](https://bookdown.org/yihui/rmarkdown/documents.html)]
+
+.font80[2: For .hi-medgrn[better formatted Word output] with greater customisability, use the **officedown** package's [`rdox_document`](https://davidgohel.github.io/officedown/reference/rdocx_document.html) format.]
+
+]
+
+
+
+---
+# 2. R Setup
+
+By default, RStudio adds a .hi-blue[setup] code chunk next.
+
+<img src="images/r_setup.png" width = "120%"/> 
+
+  * Can set global options
+  * Useful as your preamble
+  * For [.hi-orange[R Notebooks]](https://bookdown.org/yihui/rmarkdown/notebook.html), this will automatically be run and is the only place where you can change your working directory 
+
+
+---
+# 3. Contents
+
+From here on you can build the report/notebook as needed for the task.
+  * Add any writing and outside graphics or [.hi-orange[bibTeX citations]](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html)
+  * Add code chunks to carry out desired analysis
+  * Employ sections and formatting to structure the document as desired
+  
+---
+# Compiling/Knitting
+
+When you are ready to compile your final document, use the `Knit` button or `Ctrl/Cmd + Shift + K`
+
+<img src="images/rmd_knit.png" width = "100%"/> 
+
+---
+# R Markdown: Knit to Compile Output (HTML, PDF)
+
+<img src="images/rmd_knit2.png" width = "120%"/> 
+
+
+---
+class: inverse, middle
+
+# Markdown Practice!
+
+---
+# Markdown Practice
+
+  1. Create a new R Markdown file named "R-Markdown-Ex.Rmd"
+  1. In the setup chunk, load the **dslabs** and **tidyverse** packages
+    * Use the `data()` function to read in the `divorce_margarine` dataset
+  1. Add a header labeled "Correlation vs. Causation" and a text explanation below for why we often want to differentiate between the two
+  1. Add a code chunk with the label `plot`
+    * Type the following code:
+    ```
+    ggplot(divorce_margarine) +
+    geom_point(aes(x = margarine_consumption_per_capita, 
+                   y = divorce_rate_maine)) +
+    labs(title = "Relationship between Margarine Consumption and 
+                  Divorce Rates in Maine",
+         subtitle = "2000-2009",
+         x = "Margarine Consumption per Capita",
+        y = "Divorce Rate")
+     ```     
+  1. Knit and save a PDF/HTML copy of the file to the "output" folder
+  
+  
+---
+class: inverse, middle
+name: control
+
+# Version Control
+
+<!-- basics of version control, why do it, different version -->
+
+---
+# Why Use Version Control
+.center[
+<img src = "images/phd052810s.gif"  height = "100%"/> 
+]
+---
+# Goals of Version Control
+
+While building project folders with the above naming conventions is *fun*, a good .hi-medgrn[version control system] can solve this problem.
+
+  * Save each set of changes sequentially
+  * Keep track of different versions of a file
+  * Merge changes from multiple versions/sources
+
+---
+
+# Git(Hub) Solves this Problem
+
+### Git
+
+- .hi-medgrn[Git] is a .hi-medgrn[distributed version control system]
+  - Each team member has a .hi-blue[local copy] of files on their computer
+- Imagine if Dropbox and the "Track changes" feature in MS Word had a baby. Git would be that baby.
+- In fact, it's even better than that because Git is optimised for the things that economists and data scientists spend a lot of time working on (e.g. code).
+- There is a learning curve, but I promise you it's worth it.
+
+
+---
+
+# Git(Hub) Solves this Problem
+
+### GitHub
+
+- It's important to realise that .hi-medgrn[Git] and .hi-purple[GitHub] are distinct things.
+- .hi-purple[GitHub] is an .hi-purple[online hosting platform] that provides an array of services built on top of the .hi-medgrn[Git] system. (Similar platforms include Bitbucket and GitLab.)
+- Just like we don't *need* .hi-red[Rstudio] to run .hi-pink[R] code, we don't *need* .hi-purple[GitHub] to use .hi-medgrn[Git]... but it will make our lives so much easier.
+
+---
+
+# Git(Hub) for Scientific Research
+
+.hi-slate[From software development...]
+
+- .hi-medgrn[Git] and .hi-purple[GitHub]'s role in global software development is not in question.
+- There's a high probability that your favorite app, program or package is built using Git-based tools. (RStudio is a case in point.)
+
+.hi-slate[... to scientific research]
+
+- Benefits of VC and collaboration tools aside, Git(Hub) helps to operationalise the ideals of open science and reproducibility.<sup>2</sup>
+- Journals have increasingly strict requirements regarding reproducibility and data access. GH makes this easy (DOI integration, off-the-shelf licenses, etc.)
+- I host [.hi-orange[teaching materials]](https://github.com/searsjm) on GH. I even use it to host and maintain my [.hi-orange[website]](https://github.com/searsjm/searsjm.github.io) for free.
+.footnote[2: [.hi-orange[Democratic databases: Science on GitHub (Nature)]](https://www.nature.com/news/democratic-databases-science-on-github-1.20719) (Perkel, 2016).]
+
+
+---
+# Using GitHub
+
+There are a couple of different main ways that we could use GitHub:
+
+--
+
+1\. Through [github.com](https://github.com/) Only
+
+* .hi-medgrn[Pros:] doesn't require any software/local repo copies
+* .hi-red[Cons:] much more time-intensive and not automated (the whole point of this thing!)
+
+--
+
+2\. Through the command line ([GitHub CLI](https://cli.github.com/))
+
+* .hi-medgrn[Pros:] fully programmatic, requires no additional software
+* .hi-red[Cons:] fully programmatic!
+
+
+---
+# Using GitHub
+
+There are a couple of different main ways that we could use GitHub:
+
+
+3\. Integrated with RStudio
+
+* .hi-medgrn[Pros:] fully integrates RStudio projects
+* .hi-red[Cons:] limited to R projects, doesn't play as nicely with GitHub Classroom
+
+--
+
+4\. Through the GitHub Desktop App
+
+* .hi-medgrn[Pros:] Intuitive GUI, sync any kinds of files/projects
+* .hi-red[Cons:] requires an extra piece of software, [GitHub Desktop](https://desktop.github.com/download/)
+
+
+We're going to focus primarily on **4**, but the back of the deck will contain slides working through **3** if you want to experiment with that too.
+
+
+---
+class: inverse, middle
+name: desktop
+
+# GitHub Desktop
+
+---
+# Version Control with GitHub Desktop
+
+Although GitHub integration with RStudio has lots of functionality, there are times where we want to keep track of files and projects .hi-medgrn[outside of RStudio].
+
+  * For example, when you want version control of projects that .hi-blue[don't only use R] (or don't use it at all)
+  
+
+This is where .hi-purple[GitHub Desktop] comes in.
+
+---
+# Version Control with GitHub Desktop
+
+
+This next section is about learning the basic Git(Hub) commands and the recipe for successful version control with GitHub Desktop.
+
+
+I also want to bookmark a general point that we'll revisit many times during this course: 
+- The tools that we're using all form part of a coherent .hi-medgrn[data science ecosystem].
+- Greatly reduces the cognitive overhead ("aggregation") associated with traditional workflows, where you have to juggle multiple programs and languages at the same time.
+
+---
+# Github Desktop Workflow
+
+With GitHub, if we were working 
+
+1. On our own
+2. From a single computer
+
+we could just follow the below workflow:
+<br>
+
+.center[
+<img src="images/workflow1.png" height=100%>
+]
+
+Since we're collaborating with others/potentially across machines, we'll also add in a few more actions.
+
+---
+
+# Main Git operations
+
+The first Git operation in the workflow is .hi-slate[Cloning]
+
+.center[
+<img src="images/dolly.png" width="600">
+]
+
+---
+
+# (Git) Cloning
+
+No, not *that* kind of cloning.
+
+.hi-slate[Cloning:] making a local copy of a .hi-blue[GitHub Repository] (repo for short).
+
+In order to clone a repo, we first need a repo to clone. Let's start by cloning our [Course repo!](https://github.com/afre-msu/AFRE-891-991-FS25)
+
+We can do this
+
+1. From the repo page on github.com (direct link or SSH)
+2. From GitHub Desktop directly
+
+---
+
+# Course Repo Cloning (github.com)
+
+Let's start with the first approach. With GitHub Desktop installed/open, navigate to our class web page repo.
+
+
+
+.center[
+<img src="images/clone_course_repo_1.png" height=100%>
+]
+
+
+
+---
+
+# Course Repo Cloning
+
+Click the green .hi-medgrn[Code] button and then  "Open with GitHub Desktop"
+
+
+.center[
+<img src="images/clone_course_repo_2.png" height=100%>
+]
+
+
+---
+
+# Course Repo Cloning
+
+Allow your web browser to open the link. This will redirect you to GitHub Desktop, automatically adding in the repo URL.
+
+Next, choose where you want the local copy of the repo file's saved and hit .hi-blue[Clone]
+
+
+.center[
+<img src="images/clone_course_repo_3.png" width = "850">
+]
+
+---
+
+# Course Repo Cloning
+
+Wait a little bit, and navigate to the local path you gave it. Voila!
+
+.center[
+<img src="images/clone_course_repo_4.png" height=100%>
+]
+
+
+---
+# Table of Contents
+
+1. [Prologue](#prologue)
+
+1. [R Markdown](#markdown)
+
+1. [Version Control](#control)
+
+1. [GitHub Desktop - Part 1](#desktop)
+
+
+
+```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
+infile = list.files(pattern = 'Productivity-Pt1.html')
+pagedown::chrome_print(input = infile, timeout = 21600)
+```
