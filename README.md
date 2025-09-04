@@ -40,8 +40,8 @@ This work is licensed under a
 
 
 
- [**Lecture 1: R Intro**]()
- ([html]()) ([pdf]())
+ [**Lecture 1: R Intro**](https://github.com/afre-msu/AFRE-891-991-FS25/tree/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/01-R-Intro)
+ ([html](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/01-R-Intro/01-R-Intro.html)) ([pdf](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/01-R-Intro/01-R-Intro.pdf))
 
  * Course Introduction
  * R and RStudio
@@ -51,8 +51,8 @@ This work is licensed under a
  * Interacting with and Manipulating Data Frames
 
 
- [**Lecture 2: Productivity**]()
- ([html]()) ([pdf]())
+ [**Lecture 2: Productivity**](https://github.com/afre-msu/AFRE-891-991-FS25/tree/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/02-Productivity)
+ ([html](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/02-Productivity/02-Productivity.html)) ([pdf](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/02-Productivity/02-Productivity.pdf))
  
  * R Markdown
  * Version Control
@@ -60,8 +60,8 @@ This work is licensed under a
  * GitHub Desktop
  * Other Tips and Productivity Tools
 
- [**Lecture 3: Wrangling**]()
- ([html]()) ([pdf]())
+ [**Lecture 3: Wrangling**](https://github.com/afre-msu/AFRE-891-991-FS25/tree/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/03-Wrangling)
+ ([html](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/03-Wrangling/03-Wrangling.html)) ([pdf](https://github.com/afre-msu/AFRE-891-991-FS25/blob/69ea343d3ed7b1a327b40f44dd48639dc6c3c17b/Lecture%20Slides/03-Wrangling/03-Wrangling.pdf))
  
  * Tidyverse Overview
  * Pipes
