@@ -68,8 +68,8 @@ This work is licensed under a
  * Data Wrangling with dplyr
  * Data Tidying with tidyr
 
- [**Lecture 4: Cleaning**]()
- ([html]()) ([pdf]())
+ [**Lecture 4: Cleaning**](https://github.com/afre-msu/AFRE-891-991-FS25/tree/1160e6f882087e2f74541822cf73b454d86ac695/Lecture%20Slides/04-Cleaning)
+ ([html](https://github.com/afre-msu/AFRE-891-991-FS25/blob/1160e6f882087e2f74541822cf73b454d86ac695/Lecture%20Slides/04-Cleaning/04-Cleaning.html)) ([pdf](https://github.com/afre-msu/AFRE-891-991-FS25/blob/1160e6f882087e2f74541822cf73b454d86ac695/Lecture%20Slides/04-Cleaning/04-Cleaning.pdf))
  
  * Paths and Importing Data
  * Keys and Relational Data
