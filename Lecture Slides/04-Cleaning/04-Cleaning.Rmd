@@ -384,7 +384,7 @@ The .hi-slate[haven] package's `read_dta()` works great for reading in STATA-for
 hosp_cap <- haven::read_dta("data/hospital_capacity.dta") 
 ```
 
-Note that, as in STATA, the variables .hi-medgrn[contain labels]. These are visible when viewing and are stored as a .hi-blue[variable attribute]:
+Note that, as in Stata, the variables .hi-medgrn[contain labels]. These are visible when viewing and are stored as a .hi-blue[variable attribute]:
 
 ```{r}
 attr(hosp_cap$fips_code, "label")
