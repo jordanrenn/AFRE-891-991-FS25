@@ -244,10 +244,11 @@ Alternatively, we could .hi-medgrn[assign/reassign] and create .hi-medgrn[interm
 ```{r, eval = F}
 cars <- mpg
 german_cars <- filter(mpg, manufacturer %in% c("audi", "volkswagen"))
+unique(cars$manufacturer)
 german_cars_grp <- group_by(german_cars, manufacturer, model)
-summarise(german_cars_grp, hwy_mean = mean(hwy))
+summarise(german_cars_grp, hwy_mean = mean(hwy), hwy_max = max(hwy))
 ```
-
+Can add more columns is summarize just by adding more calculations after commas
 --
 
 This is stac-ca-to to read and leaves us with a bunch of intermediate objects that we'll need to deal with.
@@ -516,7 +517,7 @@ starwars %>%
   select(alias=name, crib=homeworld, gender) %>%
   head()
 ```
-
+everything(), can be used at the end of the code above to still keep everything else in the data frame, just after the ones you selected for initially 
 ---
 
 # dplyr::rename
@@ -623,6 +624,7 @@ starwars %>%
     comment = paste0(name, " is ", dog_years, " in dog years.")
     ) %>% head()
 ```
+paste vs paste0, paste will include the spaces and paste0 doesn't
 
 ---
 
@@ -634,7 +636,7 @@ starwars %>%
   select(name, height) %>%
   filter(name %in% c("Luke Skywalker", "Anakin Skywalker")) %>% 
   mutate(tall1 = height > 180) %>%
-  mutate(tall2 = ifelse(height > 180, "Tall", "Short")) ## Same effect, but can choose labels
+  mutate(tall2 = ifalse(height > 180, "Tall", "Short")) ## Same effect, but can choose labels
 
 ```
 
@@ -661,6 +663,10 @@ Alternatively, we can provide an "anonymous .hi-medgrn[lambda function] using sy
   - `.x` the variables being passed in from `across()` 
   
 ```{r, lambda}
+sw_4 <- select(starwars, name:eye_color) %>%
+  mutate(mass = mass/100,
+         height = height/10)
+
 starwars %>% select(name:eye_color) %>% 
   mutate(across(c(height, mass),   ~ .x / 100)) %>% #<< 
   head(5)
@@ -677,6 +683,8 @@ name: summarise
 starwars %>% 
   group_by(species, gender) %>% 
   summarise(mean_height = mean(height, na.rm = TRUE))
+
+#to drop the species that are na, we could use drop.na() with sepcification of what should g ointo the parentheses, if you don't it will cut any variables that have na. Can also use filter.is()
 ```
 
 ---
@@ -697,6 +705,7 @@ starwars %>%
 Note that including `na.rm = TRUE` (or `na.rm = T`) is usually a good idea, otherwise, missing values will result in `NA`
 ```{r summ3}
 ## Much better
+#na.rm = true removes those nas for us instead of just returning them as na again. I fyou add more arguments and you have more na then you need to add the na.rm again 
 starwars %>% 
   summarise(mean_height = mean(height, na.rm = TRUE))
 ```
@@ -741,6 +750,8 @@ mutate(species_mass = mean(mass, na.rm = T),
        species_mass_diff = mass - species_mass) %>%
   select(name, starts_with("species")) %>% 
   ungroup() %>% head()
+
+#this grouoing workflow persists unless you ungroup
 ```
 ---
 # Other dplyr Goodies: slice
