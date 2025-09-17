@@ -1261,6 +1261,7 @@ If we want to convert the new character column to another type (e.g. date or num
 For example, we can use the [.hi-orange[lubridate]](https://lubridate.tidyverse.org/) package's super helpful date conversion functions to convert our new variable to a date:
 
 ```{r}
+#Need to read in manually 
 pacman::p_load(lubridate)
 rev_u <- mutate(rev_u, 
                 date = mdy(date))
