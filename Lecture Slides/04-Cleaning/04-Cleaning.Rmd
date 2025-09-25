@@ -981,11 +981,15 @@ To implement this, we'll use a subset of .hi-slate[stringr]'s .hi-medgrn[string 
 
 Start by replacing 3 different punctuation marks with spaces (note we have to .hi-slate[escape] the " with `\"`):
 ```{r}
+#Need to add the _all to str_replace so that it continnues looking after finding the first match
+#Specifying quote, need to escape with /
 heights2 <- reported_heights %>%
   mutate(height_clean = str_replace_all(height, "'", " "), #<<
   height_clean = str_replace_all(height_clean, ",", " "), #<<
   height_clean = str_replace_all(height_clean, "\"", " ")) #<<
 heights2$height_clean
+
+view(heights2)
 ```
 
 ---
@@ -1034,6 +1038,11 @@ heights2$height_clean
 # 3. Remove Punctuation (Periods)
 
 ```{r}
+#This is trying to filter the original data to show what we are trying to fix
+heights_pun <- filter(heights2,
+                      str_detect(height, "\\."))
+view(heights_pun)
+
 heights2 <- reported_heights %>%
      mutate(height_clean =  str_replace_all(height,
               "'|,|\"|,|ft|feet|inches|and|cm", " "),
@@ -1368,6 +1377,7 @@ This is (the start of) a real regular expression that checks whether an email ad
 * `str_replace` and `str_replace_all`: Replace parts of strings.
 * `str_trim` and `str_squish`: Remove extra spaces.
 * `str_view_all`: Illustrates matches, to help develop regular expressions.
+* `str_detect`: lit as well
 
 Other .hi-medgrn[tidyverse] functions we've used:
 * `between`: Test whether values fall within a numerical range.
